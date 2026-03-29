@@ -8,8 +8,11 @@ import Header from "../component/header";
 export default function Portfolio() {
     const [typedText, setTypedText] = useState("");
     const [skillsRef, skillsInView] = useInView(0.1);
+    const [activeSection, setActiveSection] = useState("Home");
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const fullText = "Full Stack Developer";
+
     useEffect(() => {
         let i = 0;
         const iv = setInterval(() => {
@@ -20,17 +23,31 @@ export default function Portfolio() {
         return () => clearInterval(iv);
     }, []);
 
-
-
-
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = NAV_LINKS.map((s) => document.getElementById(s.toLowerCase()));
+            const scrollY = window.scrollY + 120;
+            sections.forEach((sec) => {
+                if (sec && sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
+                    setActiveSection(sec.id.charAt(0).toUpperCase() + sec.id.slice(1));
+                }
+            });
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+    const scrollTo = (id) => {
+        document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+        setMenuOpen(false);
+    };
 
     return (
         <div style={{ background: "#060d1a", minHeight: "100vh", color: "#f0f4f8" }}>
             {/* NAVBAR */}
-            <Header />
+            <Header {...{ activeSection, setActiveSection, menuOpen, setMenuOpen }} />
 
             {/* HERO */}
-            <section id="about" className="grid-bg" style={{ minHeight: "100vh", display: "flex", alignItems: "center", position: "relative", overflow: "hidden", paddingTop: "64px" }}>
+            <section id="home" className="grid-bg" style={{ minHeight: "100vh", display: "flex", alignItems: "center", position: "relative", overflow: "hidden", paddingTop: "64px" }}>
                 <div style={{ position: "absolute", top: "20%", right: "10%", width: "400px", height: "400px", background: "radial-gradient(circle, #00ff8814 0%, transparent 70%)", borderRadius: "50%", pointerEvents: "none" }} />
                 <div style={{ position: "absolute", bottom: "10%", left: "5%", width: "300px", height: "300px", background: "radial-gradient(circle, #00cfff0a 0%, transparent 70%)", borderRadius: "50%", pointerEvents: "none" }} />
                 <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2rem", width: "100%" }}>
@@ -162,7 +179,7 @@ export default function Portfolio() {
             </section>
 
             {/* CONTACT */}
-            <section id="contact" style={{ padding: "6rem 2rem", background: "#060d1a" }}>
+            <section id="contact" style={{ padding: "10rem 2rem", background: "#060d1a" }}>
                 <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
                     <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#00ff88", letterSpacing: "0.1em", textTransform: "uppercase" }}>05. Contact</span>
                     <h2 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "#f0f4f8", letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>Let's Build Something</h2>

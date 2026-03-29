@@ -1,39 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { NAV_LINKS } from './JSON'
 
-const Header = () => {
-    const [activeSection, setActiveSection] = useState("Home");
-    const [menuOpen, setMenuOpen] = useState(false);
-    useEffect(() => {
-        const handleScroll = () => {
-            const sections = NAV_LINKS.map((s) => document.getElementById(s.toLowerCase()));
-            const scrollY = window.scrollY + 120;
-            sections.forEach((sec) => {
-                if (sec && sec.offsetTop <= scrollY && sec.offsetTop + sec.offsetHeight > scrollY) {
-                    setActiveSection(sec.id.charAt(0).toUpperCase() + sec.id.slice(1));
-                }
-            });
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-    const scrollTo = (id) => {
-        document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
-        setMenuOpen(false);
-    };
+const Header = ({ activeSection, menuOpen, setActiveSection, setMenuOpen }: any) => {
+
     return (
         <>
-            <nav style={{
-                position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-                background: "rgba(6,13,26,0.85)", backdropFilter: "blur(20px)",
-                borderBottom: "1px solid #1e3a5f55",
-                padding: "0 2rem",
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                height: "64px",
-            }}>
+            <nav className='nav'>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, fontSize: "1rem" }}>
                     <span style={{ color: "#00ff88" }}>{"<"}</span>
-                    <span style={{ color: "#f0f4f8" }}>SL</span>
+                    <span style={{ color: "#f0f4f8" }}>SSL</span>
                     <span style={{ color: "#00ff88" }}>{"/"}</span>
                     <span style={{ color: "#f0f4f8" }}>{">"}</span>
                 </div>
