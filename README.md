@@ -1,16 +1,11 @@
-# React + Vite
+Step 1 : For CI/CD create a yml file like below in folder 
+.github\workflows\deploy.yml file
+Step 2 : add cred to github path 
+    Go to Repo and Setting -> action -> Secrets and variable -> Actions
+    then create Repository secrets
+    SERVER_IP will be ssh key
+    SSH_PRIVATE_KEY will be inside text content copy and paste it
+after that push code 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*** Note : Check logs if there is issue it will show in action tab 
+mostly server permission issue
