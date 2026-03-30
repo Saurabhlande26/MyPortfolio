@@ -27,8 +27,8 @@ jobs:
       - name: Deploy to Server
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ http://13.233.145.68 }}
+          host: ${{ secrets.SERVER_IP }}
           username: ubuntu
-          key: ${{ ssh -i "MyPortfolio.pem" ubuntu@ec2-13-233-145-68.ap-south-1.compute.amazonaws.com }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "dist/*"
           target: "/home/ubuntu/MyPortfolio"
