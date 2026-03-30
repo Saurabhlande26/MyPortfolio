@@ -11,7 +11,7 @@ export default function Portfolio() {
     const [activeSection, setActiveSection] = useState("Home");
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const fullText = "Full Stack Developer!!";
+    const fullText = "Full Stack Developer!! !!!!!";
 
     useEffect(() => {
         let i = 0;
