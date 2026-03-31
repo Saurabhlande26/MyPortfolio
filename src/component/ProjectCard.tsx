@@ -9,6 +9,7 @@ function ProjectCard({ project, index }: any) {
             ref={ref}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
+            className="projectCard"
             style={{
                 background: hovered ? "#0d1f2d" : "#0a1628",
                 border: `1px solid ${hovered ? project.color : "#1e3a5f"}`,
